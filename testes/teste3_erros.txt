@@ -1,0 +1,6 @@
+(START)
+(TODO: adicionar casos com ERROS LÉXICOS E SINTÁTICOS para validar tratamento de erros)
+(TODO: incluir pelo menos 10 linhas, misturando expressões válidas e inválidas)
+(TODO: exemplos de erro: (A B + C), (, (A B, token inválido, etc.)
+(TODO: cada erro deve gerar mensagem clara com número de linha)
+(END)

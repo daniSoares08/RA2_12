@@ -1,0 +1,8 @@
+(START)
+(TODO: adicionar pelo menos 10 linhas com expressões RPN válidas)
+(TODO: incluir todas as operações: +, -, *, |, /, %, ^)
+(TODO: incluir comandos: (N RES), (V MEM), (MEM))
+(TODO: incluir pelo menos um laço de repetição)
+(TODO: incluir pelo menos uma tomada de decisão)
+(TODO: incluir literais inteiros, reais e uso de memórias)
+(END)

@@ -24,12 +24,21 @@ operador    -> TODO
 
 ### Tomada de Decisão
 
+Forma (pós-fixada, tudo entre parênteses):
+
 ```
-TODO: definir sintaxe (ex.: (cond corpo IF) ou similar)
+( (condicao) (corpo) IF )
 ```
+
+- `condicao` e `corpo` são subexpressões/subcomandos **já entre parênteses**.
+- `IF` é keyword em maiúsculas.
 
 ### Laço de Repetição
 
+Forma:
+
 ```
-TODO: definir sintaxe (ex.: (cond corpo WHILE) ou similar)
+( (condicao) (corpo) WHILE )
 ```
+
+- `WHILE` é keyword em maiúsculas.

@@ -21,6 +21,8 @@ Analisador sintático descendente recursivo LL1 para uma linguagem de programaç
 
 **Requisitos:** Python 3.8+
 
+O programa recebe como entrada um arquivo de texto contendo o **código-fonte** da linguagem (uma expressão/comando por linha, no formato mostrado em `testes/`).
+
 ```bash
 python AnalisadorSintatico.py testes/teste1.txt
 ```
@@ -57,7 +59,11 @@ Todo programa deve começar com `(START)` e terminar com `(END)`.
 
 ### Estruturas de Controle
 
-> TODO: documentar após definição pelo grupo (ver [docs/gramatica.md](docs/gramatica.md))
+- **IF:** `( ( condição ) ( corpo ) IF )` — condição e corpo são subexpressões entre parênteses; `IF` em maiúsculas.
+- **WHILE:** `( ( condição ) ( corpo ) WHILE )` — idem com `WHILE`.
+- **Relacionais:** `>`, `<`, `==`, `!=`, `>=`, `<=` dentro das expressões RPN (ex.: `( 1 2 < )`).
+
+Detalhes em [docs/gramatica.md](docs/gramatica.md).
 
 ## Documentação
 

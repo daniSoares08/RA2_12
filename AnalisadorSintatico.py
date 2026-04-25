@@ -7,7 +7,6 @@
 # Nome do grupo no Canvas: RA2_12
 
 import sys
-import json
 from pathlib import Path
 
 from lexer import lerTokens
@@ -17,7 +16,6 @@ from arvore import gerarArvore, gerarAssembly, imprimirArvore, salvarArvoreJSON
 
 
 def main():
-    # --- 1. Valida argumento de linha de comando ---
     if len(sys.argv) < 2:
         print("Uso: python AnalisadorSintatico.py <arquivo_fonte>", file=sys.stderr)
         print("Exemplo: python AnalisadorSintatico.py testes/teste1.txt", file=sys.stderr)
@@ -25,7 +23,6 @@ def main():
 
     caminho_fonte = sys.argv[1]
 
-    # --- 2. Análise léxica ---
     print(f"[LEX] Lendo tokens de: {caminho_fonte}")
     try:
         tokens = lerTokens(caminho_fonte)
@@ -38,7 +35,6 @@ def main():
 
     print(f"[LEX] {len(tokens)} token(s) reconhecido(s).")
 
-    # --- 3. Constrói gramática, FIRST, FOLLOW e tabela LL(1) ---
     print("[GRAM] Construindo gramática e tabela LL(1)...")
     try:
         info_gramatica = construirGramatica()
@@ -48,7 +44,6 @@ def main():
 
     tabela_ll1 = info_gramatica["tabela_ll1"]
 
-    # --- 4. Análise sintática (parser LL(1) com pilha) ---
     print("[PARSE] Analisando sintaticamente...")
     resultado = parsear(tokens, tabela_ll1)
 
@@ -64,7 +59,6 @@ def main():
 
     print(f"[PARSE] OK — {len(resultado['derivacao'])} passo(s) de derivação.")
 
-    # --- 5. Constrói a árvore sintática ---
     print("[ARVORE] Construindo árvore sintática...")
     try:
         arvore = gerarArvore(resultado)
@@ -72,17 +66,14 @@ def main():
         print(f"[ERRO ÁRVORE] {e}", file=sys.stderr)
         sys.exit(1)
 
-    # --- 6. Salva a árvore em JSON ---
-    base = Path(caminho_fonte).stem          # e.g. "teste1"
+    base = Path(caminho_fonte).stem
     caminho_json = Path(f"{base}_arvore.json")
     salvarArvoreJSON(arvore, caminho_json)
     print(f"[ARVORE] Árvore salva em: {caminho_json}")
 
-    # Exibe a árvore no terminal (útil para depuração)
     print("[ARVORE] Estrutura:")
     imprimirArvore(arvore)
 
-    # --- 7. Gera código Assembly ARMv7 ---
     print("[ASM] Gerando Assembly ARMv7...")
     try:
         assembly = gerarAssembly(arvore)
